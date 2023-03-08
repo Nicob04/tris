@@ -14,10 +14,11 @@ def main():
     print(mm[1],'\n')
     print(mm[2],'\n')
     
+    #controllo partita
     while win == False:
         g1 = False
         g2 = False
-        #giocatore 1 
+        #giocatore 1 scelta
         while g1 == False:
             print('tocca a te giocatore 1: \n')
             x = input('inserisci un valore riga: ')
@@ -30,7 +31,7 @@ def main():
             while(yr < 0 or yr > 3):
                 y = input('inserisci un valore colonna: ')
                 yr = int(y)
-            #controllo g1
+            #controllo scelta g1
             if(mm[xc-1][yr-1] == 0):
                 mm[xc-1][yr-1] = 'X'
                 g1 = True
@@ -44,6 +45,7 @@ def main():
         if(p == True):
             print('PAREGGIO FINE PARTITA')
             break
+        #controllo vittoria g1
         if(mm[0][0] == mm[0][1] and mm[0][1] == mm[0][2] 
            and mm[0][0] != 0 and mm[0][1] != 0 and mm[0][2] != 0 or 
            mm[1][0] == mm[1][1] and mm[1][1] == mm[1][2] 
@@ -66,10 +68,12 @@ def main():
             break
         else:
             win = False    
+
+        #stampa tabella    
         print(mm[0],'\n')
         print(mm[1],'\n')
         print(mm[2],'\n')
-        #giocatore 2
+        #giocatore 2 scelta
         while g2 == False:
             print('tocca a te giocatore 2: \n')
             x = input('inserisci un valore riga: ')
@@ -83,7 +87,7 @@ def main():
             while(yr < 0 or yr > 3):
                 y = input('inserisci un valore colonna: ')
                 yr = int(y)
-            #controllo g2
+            #controllo scelta g2 
             print(mm[xc-1][yr-1] )
             if(mm[xc-1][yr-1] == 0):
                 mm[xc-1][yr-1] = 'O'
@@ -99,6 +103,7 @@ def main():
             print('PAREGGIO FINE PARTITA')
             break
 
+        #controllo vittoria g2           
         if(mm[0][0] == mm[0][1] and mm[0][1] == mm[0][2] 
            and mm[0][0] != 0 and mm[0][1] != 0 and mm[0][2] != 0 or 
            mm[1][0] == mm[1][1] and mm[1][1] == mm[1][2] 
@@ -120,12 +125,14 @@ def main():
             print('\n IL VINCITORE E GIOCATORE 1')
             break
         else:
-            win = False       
+            win = False 
+
+        #stampa tabella    
         print(mm[0],'\n')
         print(mm[1],'\n')
         print(mm[2],'\n')
 
-
+    #nuova partita
     print('vuoi rigiocare? y/n: ')
     r = input()
     if(r == 'y'):
@@ -134,5 +141,8 @@ def main():
         print('fine')
 
 
+
+
+#richiamo main
 if __name__ == "__main__":
     main()

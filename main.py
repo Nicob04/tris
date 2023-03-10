@@ -1,3 +1,7 @@
+
+from controllo import controllo
+from stampa import stampa
+
 #t4ris game
 
 def main():  
@@ -10,10 +14,7 @@ def main():
     c = 0
     p = False
     print('INIZIAMO IL GIOCO \n')
-    print(mm[0],'\n')
-    print(mm[1],'\n')
-    print(mm[2],'\n')
-    
+    stampa(mm)
     #controllo partita
     while win == False:
         g1 = False
@@ -33,7 +34,7 @@ def main():
                 yr = int(y)
             #controllo scelta g1
             if(mm[xc-1][yr-1] == 0):
-                mm[xc-1][yr-1] = 'X'
+                mm[xc-1][yr-1] = 1
                 g1 = True
                 c+= 1
                 if(c == 9):
@@ -46,33 +47,15 @@ def main():
             print('PAREGGIO FINE PARTITA')
             break
         #controllo vittoria g1
-        if(mm[0][0] == mm[0][1] and mm[0][1] == mm[0][2] 
-           and mm[0][0] != 0 and mm[0][1] != 0 and mm[0][2] != 0 or 
-           mm[1][0] == mm[1][1] and mm[1][1] == mm[1][2] 
-           and mm[1][0] != 0 and mm[1][1] != 0 and mm[1][2] != 0 or 
-           mm[2][0] == mm[2][1] and mm[2][1] == mm[2][2] 
-           and mm[2][0] != 0 and mm[2][1] != 0 and mm[2][2] != 0 or 
-           mm[0][0] == mm[1][1] and mm[1][1] == mm[2][2] 
-           and mm[0][0] != 0 and mm[1][1] != 0 and mm[2][2] != 0 or 
-           mm[0][2] == mm[1][1] and mm[1][1] == mm[2][0] 
-           and mm[0][2] != 0 and mm[1][1] != 0 and mm[2][0] != 0 or 
-           mm[0][0] == mm[1][0] and mm[1][0] == mm[2][0] 
-           and mm[0][0] != 0 and mm[1][0] != 0 and mm[2][0] != 0 or 
-           mm[0][1] == mm[1][1] and mm[1][1] == mm[2][1] 
-           and mm[0][1] != 0 and mm[1][1] != 0 and mm[2][1] != 0 or 
-           mm[0][2] == mm[1][2] and mm[1][2] == mm[2][2]
-           and mm[0][2] != 0 and mm[1][2] != 0 and mm[2][2] != 0):
-            win = True
-                
+        if(controllo(mm,win) == True):
+            stampa(mm)
             print('\n IL VINCITORE E GIOCATORE 1')
             break
         else:
             win = False    
 
         #stampa tabella    
-        print(mm[0],'\n')
-        print(mm[1],'\n')
-        print(mm[2],'\n')
+        stampa(mm)
         #giocatore 2 scelta
         while g2 == False:
             print('tocca a te giocatore 2: \n')
@@ -90,7 +73,7 @@ def main():
             #controllo scelta g2 
             print(mm[xc-1][yr-1] )
             if(mm[xc-1][yr-1] == 0):
-                mm[xc-1][yr-1] = 'O'
+                mm[xc-1][yr-1] = 2
                 g2 = True
                 c+= 1
                 if(c == 9):
@@ -104,44 +87,27 @@ def main():
             break
 
         #controllo vittoria g2           
-        if(mm[0][0] == mm[0][1] and mm[0][1] == mm[0][2] 
-           and mm[0][0] != 0 and mm[0][1] != 0 and mm[0][2] != 0 or 
-           mm[1][0] == mm[1][1] and mm[1][1] == mm[1][2] 
-           and mm[1][0] != 0 and mm[1][1] != 0 and mm[1][2] != 0 or 
-           mm[2][0] == mm[2][1] and mm[2][1] == mm[2][2] 
-           and mm[2][0] != 0 and mm[2][1] != 0 and mm[2][2] != 0 or 
-           mm[0][0] == mm[1][1] and mm[1][1] == mm[2][2] 
-           and mm[0][0] != 0 and mm[1][1] != 0 and mm[2][2] != 0 or 
-           mm[0][2] == mm[1][1] and mm[1][1] == mm[2][0] 
-           and mm[0][2] != 0 and mm[1][1] != 0 and mm[2][0] != 0 or 
-           mm[0][0] == mm[1][0] and mm[1][0] == mm[2][0] 
-           and mm[0][0] != 0 and mm[1][0] != 0 and mm[2][0] != 0 or 
-           mm[0][1] == mm[1][1] and mm[1][1] == mm[2][1] 
-           and mm[0][1] != 0 and mm[1][1] != 0 and mm[2][1] != 0 or 
-           mm[0][2] == mm[1][2] and mm[1][2] == mm[2][2]
-           and mm[0][2] != 0 and mm[1][2] != 0 and mm[2][2] != 0):
-            win = True
-            print(mm[0] ,'\n',mm[1],'\n',mm[2])
-            print('\n IL VINCITORE E GIOCATORE 1')
+        if(controllo(mm,win) == True):
+            stampa(mm)
+            print('\n IL VINCITORE E GIOCATORE 2')
             break
         else:
             win = False 
 
         #stampa tabella    
-        print(mm[0],'\n')
-        print(mm[1],'\n')
-        print(mm[2],'\n')
+        stampa(mm)
 
     #nuova partita
-    print('vuoi rigiocare? y/n: ')
+    print('Vuoi rigiocare? y/n: ')
     r = input()
+    while(r != 'y' and r != 'n'):
+        print('Immetti un carattere corretto\nVuoi rigiocare? y/n: ')
+        r = input()
+    
     if(r == 'y'):
         main()
     else:
         print('fine')
-
-
-
 
 #richiamo main
 if __name__ == "__main__":
